@@ -78,4 +78,5 @@ složek kostkou ji tedy překoná ve čtyřech případech z pěti (`percentile.
 
 ## Licence
 
-Kód: MIT (viz `LICENSE`). Text `PAPER.md` a `PAPER.cs.md`: CC BY 4.0.
+Kód (všechny `*.py` a `run_all.sh`): MIT, viz `LICENSE`.
+Text `PAPER.md` a `PAPER.cs.md`: CC BY 4.0.

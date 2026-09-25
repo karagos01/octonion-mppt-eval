@@ -2,6 +2,7 @@
 
 **Autor:** karagos01 · **Typ:** pracovní text / technický komentář · **Datum:** 25. 9. 2026 ·
 **Anglická verze:** [PAPER.md](PAPER.md)
+**Licence:** tento text CC BY 4.0 · přiložený kód MIT
 
 **Komentář k:** M. Mazgal, *Intensional Maxwellian Formalism in Power Electronics: Causal Octonion
 Control of Distributed Multi-Phase Converters*, v 1.0 (DOI 10.5281/zenodo.22877912) a v 1.1

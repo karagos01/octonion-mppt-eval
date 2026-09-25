@@ -76,4 +76,5 @@ eight quantities to components by throwing dice beats it four times out of five 
 
 ## Licence
 
-Code: MIT (see `LICENSE`). Text of `PAPER.md`: CC BY 4.0.
+Code (all `*.py` and `run_all.sh`): MIT, see `LICENSE`.
+Text of `PAPER.md` and `PAPER.cs.md`: CC BY 4.0.
