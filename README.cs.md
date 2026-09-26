@@ -76,6 +76,11 @@ Publikovaná konfigurace (výstup `e0`, nedeformovaná metrika, jak plyne ze zve
 20,3 % a umístila se za 16 470 z 20 000 náhodně poskládaných konfigurací. Naházet těch osm veličin do
 složek kostkou ji tedy překoná ve čtyřech případech z pěti (`percentile.py`).
 
+## Doprovodná vyhodnocení
+
+- [`xternary-eval`](https://github.com/karagos01/xternary-eval) — 2bitový inferenční engine pro LLM
+- [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — trilogie CQFT / PCTP / SOTP ze září 2026
+
 ## Licence
 
 Kód (všechny `*.py` a `run_all.sh`): MIT, viz `LICENSE`.

@@ -74,6 +74,11 @@ The configuration actually published (output `e0`, undeformed metric, as the rel
 reaches 20.3 % and ranks below 16 470 of the 20 000 randomly assembled configurations — assigning the
 eight quantities to components by throwing dice beats it four times out of five (`percentile.py`).
 
+## Companion evaluations
+
+- [`xternary-eval`](https://github.com/karagos01/xternary-eval) — the 2-bit LLM inference engine
+- [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — the CQFT / PCTP / SOTP trilogy of September 2026
+
 ## Licence
 
 Code (all `*.py` and `run_all.sh`): MIT, see `LICENSE`.
