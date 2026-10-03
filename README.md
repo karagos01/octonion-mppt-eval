@@ -78,6 +78,7 @@ eight quantities to components by throwing dice beats it four times out of five 
 
 - [`xternary-eval`](https://github.com/karagos01/xternary-eval) — the 2-bit LLM inference engine
 - [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — the CQFT / PCTP / SOTP trilogy of September 2026
+- [`openql-eval`](https://github.com/karagos01/openql-eval) — the openQL / openOL tensor matrix architecture of October 2026
 
 ## Licence
 

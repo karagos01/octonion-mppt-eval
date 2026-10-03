@@ -80,6 +80,7 @@ složek kostkou ji tedy překoná ve čtyřech případech z pěti (`percentile.
 
 - [`xternary-eval`](https://github.com/karagos01/xternary-eval) — 2bitový inferenční engine pro LLM
 - [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — trilogie CQFT / PCTP / SOTP ze září 2026
+- [`openql-eval`](https://github.com/karagos01/openql-eval) — tenzorová maticová architektura openQL / openOL z října 2026
 
 ## Licence
 
