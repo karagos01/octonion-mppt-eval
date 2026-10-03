@@ -27,7 +27,20 @@ identically zero for any input; taken with the undeformed metric that the releas
 published configuration ranks below 16 470 of the 20 000 randomly assembled ones. We also show that the associator of three consecutive states equals
 `[X, a, b]`, a trilinear function of the state and the last two increments, which explains both the
 measured 3× slower convergence and the failure under fast irradiance ramps: the useful signal is
-obtained one difference later, with 74 % more measurement noise. All code is provided.
+obtained one difference later, with 74 % more measurement noise.
+
+Two results do not depend on that reconstruction at all. First, the component labels carry no
+information: of the 5040 ways to assign seven physical quantities to the imaginary units, 168 leave
+the multiplication table bitwise identical, the basis automorphism group has order 1344, and the 5040
+assignments collapse to 30 distinct algebras — the same four counts on two different published
+orientations. Taking the stated units literally, 42 of 56 products equate incompatible dimensions,
+and the constraint system over the whole table has rank 8 of 8, so the only dimensionally consistent
+octonion over ℝ is the one whose components are all dimensionless; `e0` is in any case the
+multiplicative identity rather than a slot. Second, the *Maxwellian* of the title is uncited and the
+attribution tracks the algebra rather than the history: across all ten of the author's Zenodo
+deposits Maxwell is named only in the four that pair him with octonions, zero times in the three
+quaternionic ones, and "Treatise", "1873", "1865" and "Heaviside" occur zero times anywhere. All code
+is provided.
 
 ## 1. What is claimed and what is published
 
@@ -185,7 +198,141 @@ against 87 % for plain P&O.
 One associator requires four octonion products, i.e. 256 multiply-accumulate operations plus eight
 subtractions per control step, against one comparison for P&O.
 
-## 4. Limitations
+## 4. The component labels carry no information
+
+Section 2.1 of v1.1 is the only place where physics enters the octonion layer, so everything in the
+proposal rests on one sentence:
+
+> "Let O be a state octonion mapping dimensions e_0 … e_7 to physical potentials (e.g., scalar
+> voltage, vector current, thermodynamic entropy, and electromotive gradients)."
+
+`labels.py` measures three things about that sentence. None of them depends on our reconstruction of
+the controller, so this section stands independently of Section 3.
+
+**The seven imaginary units are interchangeable.** A physical assignment is a bijection from seven
+quantities onto e_1 … e_7, so there are 7! = 5040 of them. Two assignments describe the same algebra
+whenever the relabelling between them is an automorphism of the multiplication table. Counting those
+directly, on the orientation used throughout this repository and on the one the same author later
+published as SOTP Eq. (3):
+
+| | measured |
+|---|---|
+| relabellings leaving the table bitwise identical | **21 of 5040** |
+| …allowing a sign flip on each unit | **168 of 5040** |
+| order of the full basis automorphism group | **1344** = 8 × 168 |
+| distinct algebras reachable by relabelling | **30** |
+
+Both tables give the same four numbers, so the result is a property of the octonions and not of a
+particular orientation. Each of the 5040 assignments is algebraically identical to 167 of the others.
+The deeper reason is that Aut(𝕆) over the reals is the 14-dimensional exceptional group G₂, which acts
+transitively on basic triples: no invariant of the algebra distinguishes e_1 from e_4. Calling one
+component "thermodynamic entropy" and another "electromotive gradient" therefore adds no constraint
+that any computation can see. It is consistent with our search result in Section 3.2 — where a
+configuration worked, it worked because of *which signal* was fed in, never because of *which slot*
+it was fed into.
+
+**No assignment of units is possible at all.** Taking the sentence literally, with e_0 in volts,
+e_1 … e_3 in amperes, e_4 in J/K and e_5 … e_7 in V/m, **42 of the 56** products of two distinct
+imaginary units equate incompatible dimensions: e_1 e_2 = e_4 requires [A][A] = [J/K], e_1 e_3 = e_7
+requires [A][A] = [V/m], and so on. That is every one of them.
+
+The stronger statement is that no relabelling or rescaling rescues it. Write one unknown dimension
+exponent d_i per component and collect the constraint d_i + d_j = d_k from all 64 entries of the
+table. The resulting system has **rank 8 in 8 unknowns**, so its solution space has dimension **0**:
+the only dimensionally consistent octonion over ℝ is the one in which all eight components are
+dimensionless. Two entries suffice to see why — e_0 e_i = e_i forces d_0 = 0, and e_i e_i = −e_0 then
+forces d_i = 0. An octonion is an algebra over ℝ; its eight components are added to one another, so
+they must share one dimension. Section 2.1 does not describe a richer object than a vector of eight
+real numbers. It describes an expression that cannot be evaluated.
+
+**e_0 is not a slot.** e_0 e_0 = e_0: it is the multiplicative identity. Assigning it "scalar
+voltage" asserts V² = V. The mapping offers eight names for seven interchangeable places and one
+place that is not a place.
+
+This is the dimensional inconsistency referred to in Section 1 as "one dimensionally inconsistent
+equation" in v1.0, located at its source rather than in a downstream formula.
+
+## 5. Which algebra is attributed to Maxwell
+
+The title of both versions is *Intensional Maxwellian Formalism*, and the abstract of v1.0 describes
+the work as "restoring James Clerk Maxwell's original hypercomplex architecture". The claim is
+load-bearing: it supplies the historical warrant for choosing a non-associative algebra in the first
+place. It is also uncited — the preprint has no reference to any work of Maxwell's, and no
+bibliography at all.
+
+`census.sh` downloads all ten of the author's Zenodo deposits, converts each to text and counts the
+keywords. It is the only script here that needs the network; the counts below are from a run on
+3 October 2026.
+
+| deposit | DOI suffix | Maxwell | octonion | quaternion | Treatise | 1873 | 1865 | Heaviside |
+|---|---|---|---|---|---|---|---|---|
+| acoustic projector | 22876757 | 2 | 19 | 0 | 0 | 0 | 0 | 0 |
+| X-Ternary | 22877345 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
+| MPPT v1.0 | 22877912 | 4 | 13 | 0 | 0 | 0 | 0 | 0 |
+| MPPT v1.1 | 22914238 | 5 | 12 | 0 | 0 | 0 | 0 | 0 |
+| COBAR | 22923154 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| momentum drive | 22934058 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| CQFT | 22959886 | **0** | 0 | 10 | 0 | 0 | 0 | 0 |
+| PCTP | 22962188 | **0** | 0 | 15 | 0 | 0 | 0 | 0 |
+| SOTP | 22962557 | **0** | 20 | 8 | 0 | 0 | 0 | 0 |
+| openQL / openOL | 23112560 | 2 | 3 | 7 | 0 | 0 | 0 | 0 |
+
+Three patterns fall out of the table.
+
+**Maxwell is named only where octonions are.** The four deposits that pair Maxwell with an
+engineering application all attribute to him a two-layer architecture whose first layer is octonionic:
+"Following Maxwell's formalism, the system's underlying physical models are structured into two
+distinct layers. The first layer is the Hidden Causal Memory, utilizing Octonion Algebra" (acoustic
+projector); "a two-layer formalism inspired by Maxwell's original equations … Layer 1 (Hidden Causal
+Memory): The system's causal history and interaction sequence are stored using non-associative
+octonion algebra" (X-Ternary); "restoring James Clerk Maxwell's original hypercomplex architecture"
+(MPPT v1.0).
+
+**Where the algebra is quaternionic, Maxwell disappears.** CQFT and PCTP are built on quaternions and
+name him zero times. SOTP, the octonionic member of the same trilogy, also names him zero times. In
+place of a historical warrant, CQFT substitutes a different one — S. Adler's quaternionic quantum
+mechanics — and argues that "this historical failure was not due to the nature of quaternions, but
+rather the flawed axiom of scalar fungibility". An authority that attaches exactly where octonions
+appear, and falls away when the algebra changes, is being selected to fit the conclusion rather than
+consulted.
+
+**Nothing is cited.** "Treatise", "1873", "1865" and "Heaviside" occur zero times in all ten
+deposits. Whatever Maxwell is said to have originally written, no deposit says where.
+
+What the historical record contains is narrower than the claim and points at the other algebra. The
+1865 *Dynamical Theory of the Electromagnetic Field* is twenty scalar component equations in twenty
+variables, with no hypercomplex algebra of any kind. Quaternions appear in the 1873 *Treatise* in
+§§618–619, the last two articles of Chapter IX, under the head "Quaternion Expressions for the
+Electromagnetic Equations" — scarcely two pages in a two-volume work of roughly a thousand. §618 is a
+named list of the vectors and scalars already in implicit use; §619 states that *if* "vector" and
+"scalar" are read as the vector and scalar parts of quaternions and *if* ∇ is taken as
+quaternion-valued, then the equations already derived can be notated as (A)–(L). Only the operators
+`S.` and `V.` occur there. Maxwell never multiplies two quaternions anywhere in the book: the full
+product PQ does not appear. That is Hamilton's operator notation, not quaternion algebra, and the
+real part of the quaternion carries no physics.
+
+Maxwell's own position is on the record. He "endeavoured to avoid any process demanding from the
+reader a knowledge of the Calculus of Quaternions", recommended "the introduction of the ideas, as
+distinguished from the operations and methods of Quaternions", and wrote to Tait that he wanted to
+"leaven my book with Hamiltonian ideas without casting the operations into a Hamiltonian form". He
+also raised a physical objection: a vector quaternion squares to minus the square of its length, so a
+kinetic energy written quaternionically comes out negative. In Chapter X the Gothic symbols appear
+stripped of their quaternionic reading, and after that they are gone.
+
+So the strong form of the claim is unavailable in either algebra. Octonions — Graves 1843, Cayley
+1845 — appear nowhere in Maxwell, not even as a notational remark. Nor was anything suppressed:
+those two pages are arguably the most consequential in the book, because Heaviside and Gibbs built
+modern vector analysis out of them, and Maxwell himself coined "gradient", "convergence" and "curl"
+in his 1871 essay on the classification of physical quantities. What was dropped from the quaternion
+form was the real part, which Maxwell never filled with physics.
+
+For completeness, openQL / openOL (3 October 2026) is the first deposit to attach Maxwell to
+quaternions rather than octonions — "4D quaternion mechanics (for computing phase shifts, rotations,
+and Maxwell's equations)". That is the algebra for which the historical claim has at least a weak
+basis. It remains uncited and carries no mechanism, but the attribution now points at the right
+algebra. That deposit is evaluated separately in `openql-eval`.
+
+## 6. Limitations
 
 We evaluate our reconstruction, not the author's method, because the latter is not defined; a
 different assignment of quantities to components may behave differently, which is precisely the
@@ -194,7 +341,7 @@ a single module without converter dynamics; multi-phase current sharing, the swa
 claim and the hardware-protection claim are not tested, as no testable description of them exists.
 Our results say nothing about whether an octonion layer could be useful in some other formulation.
 
-## 5. Conclusion
+## 7. Conclusion
 
 For the MPP search itself, the octonion associator adds nothing. Where a configuration works, it
 works because the expansion happens to contain the change of power, which is the quantity P&O uses
@@ -219,7 +366,9 @@ inconsistent.
 
 All code, models and experiment scripts are available at https://github.com/karagos01/octonion-mppt-eval and reproduce every
 number in this comment (`run_all.sh`; the 20 000-configuration search takes about 14 minutes on
-16 cores).
+16 cores).  Sections 4 and 5 are the cheap ones: `labels.py` reproduces every count in Section 4 in
+about a second and needs nothing but numpy, and `census.sh` reproduces the table in Section 5 by
+downloading the ten deposits from Zenodo — the only script here that uses the network.
 
 ## References
 
@@ -237,3 +386,16 @@ number in this comment (`run_all.sh`; the 20 000-configuration search takes abou
    Progress in Photovoltaics: Research and Applications, 2003.
 7. EN 50530, *Overall efficiency of grid connected photovoltaic inverters* (dynamic MPPT efficiency
    test profiles).
+8. J. C. Maxwell, *A Treatise on Electricity and Magnetism*, Clarendon Press, 1873, §§618–619
+   ("Quaternion Expressions for the Electromagnetic Equations").
+9. J. C. Maxwell, *A Dynamical Theory of the Electromagnetic Field*, Philosophical Transactions of
+   the Royal Society 155, 1865, 459–512.
+10. J. C. Maxwell, *On the Mathematical Classification of Physical Quantities*, Proceedings of the
+   London Mathematical Society 3, 1871, 224–233 (where "gradient", "convergence" and "curl" are
+   introduced).
+11. N. Wheeler, *Theories of Maxwellian Design*, Reed College, 1998 (on §§618–619, the
+   Maxwell–Tait correspondence, and the negative-kinetic-energy objection).
+12. J. M. Chappell, A. Iqbal, J. G. Hartnett, D. Abbott, *The Vector Algebra War: A Historical
+   Perspective*, IEEE Access 4, 2016, 1997–2004. arXiv:1509.00501.
+13. A. Hurwitz, *Über die Composition der quadratischen Formen von beliebig vielen Variabeln*,
+   Nachrichten der Gesellschaft der Wissenschaften zu Göttingen, 1898, 309–316.

@@ -26,8 +26,19 @@ nulová; s nedeformovanou metrikou, kterou zveřejněný kód implikuje, se publ
 umístila za 16 470 z 20 000 náhodně poskládaných variant. Dále ukazujeme, že asociátor tří po sobě
 jdoucích stavů je rovný `[X, a, b]`, tedy trilineární funkci stavu a posledních dvou přírůstků, což
 vysvětluje jak naměřenou třikrát pomalejší konvergenci, tak selhání při rychlých rampách ozáření:
-užitečný signál se získává o jednu diferenci později a se o 74 % větším šumem měření. Veškerý kód je
-k dispozici.
+užitečný signál se získává o jednu diferenci později a se o 74 % větším šumem měření.
+
+Dva výsledky na té rekonstrukci nezávisí vůbec. První: označení složek nenese žádnou informaci — z
+5040 způsobů, jak přiřadit sedm fyzikálních veličin imaginárním jednotkám, nechá 168 násobicí tabulku
+bitově identickou, bázová automorfní grupa má řád 1344 a těch 5040 přiřazení se zhroutí na 30
+různých algeber, přičemž tatáž čtyři čísla vyjdou na dvou různých publikovaných orientacích. Čteno
+s uvedenými jednotkami doslova staví 42 z 56 součinů do rovnosti neslučitelné dimenze a soustava
+podmínek přes celou tabulku má hodnost 8 z 8, takže jediný dimenzionálně konzistentní oktonion nad ℝ
+je ten, jehož složky jsou všechny bezrozměrné; `e0` je navíc multiplikativní jednotka, ne slot.
+Druhý: *Maxwellian* z titulu je necitovaný a atribuce sleduje algebru, ne historii — ze všech deseti
+autorových depositů na Zenodu je Maxwell jmenovaný jen ve čtyřech, které ho párují s oktoniony,
+nulakrát ve třech kvaternionových, a „Treatise", „1873", „1865" a „Heaviside" se nevyskytují nikde.
+Veškerý kód je k dispozici.
 
 ## 1. Co se tvrdí a co je zveřejněno
 
@@ -181,7 +192,134 @@ proti 87 % u obyčejného P&O.
 Jeden asociátor vyžaduje čtyři oktonionové součiny, tedy 256 operací násobení se sčítáním a osm
 odečtení na krok regulace, proti jednomu porovnání u P&O.
 
-## 4. Omezení
+## 4. Označení složek nenese žádnou informaci
+
+Sekce 2.1 ve v1.1 je jediné místo, kde do oktonionové vrstvy vstupuje fyzika, takže celý návrh stojí
+na jedné větě:
+
+> „Let O be a state octonion mapping dimensions e_0 … e_7 to physical potentials (e.g., scalar
+> voltage, vector current, thermodynamic entropy, and electromotive gradients)."
+
+`labels.py` měří na té větě tři věci. Žádná z nich nezávisí na naší rekonstrukci regulátoru, takže
+tato sekce stojí nezávisle na sekci 3.
+
+**Těch sedm imaginárních jednotek je záměnných.** Fyzikální přiřazení je bijekce ze sedmi veličin na
+e_1 … e_7, takže jich je 7! = 5040. Dvě přiřazení popisují tutéž algebru, kdykoli je přeznačení mezi
+nimi automorfismus násobicí tabulky. Spočítáno přímo, na orientaci používané v celém tomto
+repozitáři i na té, kterou tentýž autor později publikoval jako SOTP Eq. (3):
+
+| | naměřeno |
+|---|---|
+| přeznačení, po kterých je tabulka bitově identická | **21 z 5040** |
+| …když se smí obrátit znaménko každé jednotky | **168 z 5040** |
+| řád celé bázové automorfní grupy | **1344** = 8 × 168 |
+| různých algeber dosažitelných přeznačením | **30** |
+
+Obě tabulky dávají tatáž čtyři čísla, takže je to vlastnost oktonionů, ne jedné konkrétní orientace.
+Každé z těch 5040 přiřazení je algebraicky identické se 167 ostatními. Hlubší důvod je, že Aut(𝕆) nad
+reálnými čísly je čtrnáctirozměrná výjimečná grupa G₂, která působí tranzitivně na bázových trojicích:
+žádný invariant algebry nerozliší e_1 od e_4. Pojmenovat jednu složku „thermodynamic entropy" a jinou
+„electromotive gradient" tedy nepřidává žádnou podmínku, kterou by jakýkoli výpočet mohl vidět. Je to
+v souladu s výsledkem našeho prohledávání v sekci 3.2 — tam, kde konfigurace fungovala, fungovala
+kvůli tomu, *který signál* se přivedl, nikdy kvůli tomu, *do kterého slotu*.
+
+**Žádné přiřazení jednotek není možné.** Čteno doslova, s e_0 ve voltech, e_1 … e_3 v ampérech, e_4
+v J/K a e_5 … e_7 ve V/m, **42 z 56** součinů dvou různých imaginárních jednotek staví do rovnosti
+neslučitelné dimenze: e_1 e_2 = e_4 vyžaduje [A][A] = [J/K], e_1 e_3 = e_7 vyžaduje [A][A] = [V/m] a
+tak dál. To jsou všechny.
+
+Silnější tvrzení je, že to nezachrání žádné přeznačení ani přeškálování. Napiš jednu neznámou
+dimenzionální exponentu d_i na složku a seber podmínku d_i + d_j = d_k ze všech 64 položek tabulky.
+Výsledná soustava má **hodnost 8 v 8 neznámých**, takže její prostor řešení má dimenzi **0**: jediný
+dimenzionálně konzistentní oktonion nad ℝ je ten, ve kterém je všech osm složek bezrozměrných. Proč,
+se vidí na dvou položkách — e_0 e_i = e_i vynutí d_0 = 0 a e_i e_i = −e_0 pak vynutí d_i = 0. Oktonion
+je algebra nad ℝ; jeho osm složek se k sobě sčítá, takže musí nést jednu dimenzi. Sekce 2.1 nepopisuje
+bohatší objekt než vektor osmi reálných čísel. Popisuje výraz, který nelze vyhodnotit.
+
+**e_0 není slot.** e_0 e_0 = e_0: je to multiplikativní jednotka. Přiřadit jí „scalar voltage" tvrdí,
+že V² = V. Mapování nabízí osm jmen pro sedm záměnných míst a jedno místo, které místem není.
+
+Toto je ta dimenzionální nekonzistence, na kterou sekce 1 odkazuje jako na „jednu dimenzionálně
+nekonzistentní rovnici" ve v1.0, nalezená u zdroje, ne v odvozeném vzorci.
+
+## 5. Jaká algebra se připisuje Maxwellovi
+
+Titul obou verzí je *Intensional Maxwellian Formalism* a abstrakt v1.0 popisuje práci jako „restoring
+James Clerk Maxwell's original hypercomplex architecture". To tvrzení je nosné: dodává historické
+oprávnění, proč vůbec volit nonasociativní algebru. A je necitované — preprint neodkazuje na žádnou
+Maxwellovu práci a nemá bibliografii vůbec.
+
+`census.sh` stáhne všech deset autorových depositů ze Zenoda, převede každý na text a spočítá klíčová
+slova. Je to jediný skript tady, který potřebuje síť; počty níže jsou z běhu 3. října 2026.
+
+| deposit | konec DOI | Maxwell | octonion | quaternion | Treatise | 1873 | 1865 | Heaviside |
+|---|---|---|---|---|---|---|---|---|
+| akustický projektor | 22876757 | 2 | 19 | 0 | 0 | 0 | 0 | 0 |
+| X-Ternary | 22877345 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
+| MPPT v1.0 | 22877912 | 4 | 13 | 0 | 0 | 0 | 0 | 0 |
+| MPPT v1.1 | 22914238 | 5 | 12 | 0 | 0 | 0 | 0 | 0 |
+| COBAR | 22923154 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| topologický pohon | 22934058 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| CQFT | 22959886 | **0** | 0 | 10 | 0 | 0 | 0 | 0 |
+| PCTP | 22962188 | **0** | 0 | 15 | 0 | 0 | 0 | 0 |
+| SOTP | 22962557 | **0** | 20 | 8 | 0 | 0 | 0 | 0 |
+| openQL / openOL | 23112560 | 2 | 3 | 7 | 0 | 0 | 0 | 0 |
+
+Z tabulky vypadnou tři vzorce.
+
+**Maxwell je jmenovaný jen tam, kde jsou oktoniony.** Všechny čtyři deposity, které Maxwella párují
+s inženýrskou aplikací, mu připisují dvouvrstvou architekturu, jejíž první vrstva je oktonionová:
+„Following Maxwell's formalism, the system's underlying physical models are structured into two
+distinct layers. The first layer is the Hidden Causal Memory, utilizing Octonion Algebra" (akustický
+projektor); „a two-layer formalism inspired by Maxwell's original equations … Layer 1 (Hidden Causal
+Memory): The system's causal history and interaction sequence are stored using non-associative
+octonion algebra" (X-Ternary); „restoring James Clerk Maxwell's original hypercomplex architecture"
+(MPPT v1.0).
+
+**Kde je algebra kvaternionová, Maxwell zmizí.** CQFT a PCTP jsou postavené na kvaternionech a
+jmenují ho nulakrát. SOTP, oktonionový člen téže trilogie, ho jmenuje taky nulakrát. Místo
+historického oprávnění nasazuje CQFT jiné — Adlerovu kvaternionovou kvantovou mechaniku — a tvrdí, že
+„this historical failure was not due to the nature of quaternions, but rather the flawed axiom of
+scalar fungibility". Autorita, která se připne přesně tam, kde jsou oktoniony, a odpadne, když se
+algebra změní, je vybíraná k závěru, ne konzultovaná.
+
+**Necituje se nic.** „Treatise", „1873", „1865" a „Heaviside" se ve všech deseti depositech vyskytují
+nulakrát. Ať Maxwell původně napsal cokoli, žádný deposit neříká kde.
+
+To, co historický záznam obsahuje, je užší než to tvrzení a míří na tu druhou algebru. *Dynamical
+Theory of the Electromagnetic Field* z roku 1865 je dvacet skalárních složkových rovnic ve dvaceti
+proměnných, bez hyperkomplexní algebry jakéhokoli druhu. Kvaterniony se v *Treatise* z roku 1873
+objevují v §§618–619, v posledních dvou článcích kapitoly IX, pod záhlavím „Quaternion Expressions
+for the Electromagnetic Equations" — na necelých dvou stranách dvousvazkového díla o přibližně tisíci.
+§618 je jmenný seznam vektorů a skalárů, které už byly implicitně v užívání; §619 říká, že *pokud* se
+„vector" a „scalar" čtou jako vektorová a skalární část kvaternionu a *pokud* se ∇ bere jako
+kvaternionové, pak se už odvozené rovnice dají zapsat jako (A)–(L). Vyskytují se tam jen operátory
+`S.` a `V.`. Maxwell nikde v celé knize nevynásobí dva kvaterniony: plný součin PQ se neobjevuje. Je
+to Hamiltonova operátorová notace, ne kvaternionová algebra, a reálná část kvaternionu nenese žádnou
+fyziku.
+
+Maxwellova vlastní pozice je doložená. „Endeavoured to avoid any process demanding from the reader a
+knowledge of the Calculus of Quaternions", doporučoval „the introduction of the ideas, as
+distinguished from the operations and methods of Quaternions" a Taitovi napsal, že chce „leaven my
+book with Hamiltonian ideas without casting the operations into a Hamiltonian form". Měl i fyzikální
+námitku: vektorový kvaternion dá po umocnění minus kvadrát své délky, takže kinetická energie zapsaná
+kvaternionově vyjde negativní. V kapitole X se gotické symboly objevují zbavené kvaternionového čtení
+a potom už vůbec.
+
+Takže silná forma toho tvrzení není dostupná ani v jedné algebře. Oktoniony — Graves 1843, Cayley
+1845 — se u Maxwella neobjevují nikde, ani jako notační poznámka. A nic potlačené nebylo: ty dvě
+stránky jsou pravděpodobně nejvlivnější v celé knize, protože z nich Heaviside a Gibbs postavili
+moderní vektorovou analýzu, a sám Maxwell zavedl „gradient", „convergence" a „curl" ve své eseji
+o klasifikaci fyzikálních veličin z roku 1871. Co z kvaternionové formy vypadlo, byla reálná část,
+kterou Maxwell nikdy nenaplnil fyzikou.
+
+Pro úplnost: openQL / openOL (3. října 2026) je první deposit, který Maxwella připíná ke
+kvaternionům, a ne k oktonionům — „4D quaternion mechanics (for computing phase shifts, rotations,
+and Maxwell's equations)". To je ta algebra, u které má historické tvrzení aspoň slabý základ. Pořád
+je necitované a pořád bez mechanismu, ale atribuce teď míří na správnou algebru. Ten deposit je
+vyhodnocený samostatně v `openql-eval`.
+
+## 6. Omezení
 
 Vyhodnocujeme naši rekonstrukci, ne autorovu metodu, protože ta není definovaná; jiné přiřazení
 veličin do složek se může chovat jinak, a právě v tom je problém, protože rozptyl mezi přiřazeními
@@ -190,7 +328,7 @@ dělení proudu mezi fáze, tvrzení o synchronizaci roje ani tvrzení o ochran�
 protože k nim neexistuje testovatelný popis. Naše výsledky neříkají nic o tom, jestli by oktonionová
 vrstva mohla být užitečná v nějaké jiné formulaci.
 
-## 5. Závěr
+## 7. Závěr
 
 Pro samotné hledání MPP nepřináší oktonionový asociátor nic. Kde konfigurace funguje, funguje proto,
 že rozpis náhodou obsahuje změnu výkonu, tedy veličinu, kterou P&O používá přímo, o jednu diferenci
@@ -214,7 +352,9 @@ modelem může být osmirozměrný, a přesto rozměrově nekonzistentní.
 
 Veškerý kód, modely a experimentální skripty jsou k dispozici na https://github.com/karagos01/octonion-mppt-eval a reprodukují
 každé číslo z tohoto komentáře (`run_all.sh`; hledání přes 20 000 konfigurací trvá asi 14 minut na
-16 jádrech).
+16 jádrech).  Sekce 4 a 5 jsou ty levné: `labels.py` reprodukuje všechny počty
+ze sekce 4 asi za sekundu a nepotřebuje nic než numpy a `census.sh` reprodukuje tabulku ze sekce 5
+stažením těch deseti depositů ze Zenoda — je to jediný skript tady, který používá síť.
 
 ## Literatura
 
@@ -232,3 +372,15 @@ každé číslo z tohoto komentáře (`run_all.sh`; hledání přes 20 000 konfi
    Progress in Photovoltaics: Research and Applications, 2003.
 7. EN 50530, *Celková účinnost fotovoltaických střídačů připojených k síti* (dynamické testovací
    profily účinnosti MPPT).
+8. J. C. Maxwell, *A Treatise on Electricity and Magnetism*, Clarendon Press, 1873, §§618–619
+   („Quaternion Expressions for the Electromagnetic Equations").
+9. J. C. Maxwell, *A Dynamical Theory of the Electromagnetic Field*, Philosophical Transactions of
+   the Royal Society 155, 1865, 459–512.
+10. J. C. Maxwell, *On the Mathematical Classification of Physical Quantities*, Proceedings of the
+   London Mathematical Society 3, 1871, 224–233 (kde zavádí „gradient", „convergence" a „curl").
+11. N. Wheeler, *Theories of Maxwellian Design*, Reed College, 1998 (k §§618–619, korespondenci
+   Maxwell–Tait a námitce o negativní kinetické energii).
+12. J. M. Chappell, A. Iqbal, J. G. Hartnett, D. Abbott, *The Vector Algebra War: A Historical
+   Perspective*, IEEE Access 4, 2016, 1997–2004. arXiv:1509.00501.
+13. A. Hurwitz, *Über die Composition der quadratischen Formen von beliebig vielen Variabeln*,
+   Nachrichten der Gesellschaft der Wissenschaften zu Göttingen, 1898, 309–316.

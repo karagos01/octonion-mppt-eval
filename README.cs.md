@@ -33,6 +33,7 @@ nebo jednotlivě, v tomto pořadí (pozdější skripty čtou `search.npz`):
 | Skript | Co spočítá | Čas |
 |---|---|---|
 | `octonion.py` | ověření algebry (norma, alternativita, skalární složka asociátoru) | 3 s |
+| `labels.py` | jestli označení složek ze sekce 2.1 nese informaci: bázové automorfismy, dimenzionální konzistence | 1 s |
 | `baseline.py` | P&O, pevná střída, náhodná procházka a všech 16 věrných variant na 6 profilech | 4 min |
 | `symbolic.py` | důkaz, že `[X,Y,Z] = [X,a,b]`, a rozpis každé složky symbolicky | 20 s |
 | `convergence.py` | konvergence z 12 V a z 33,6 V, s šumem měření i bez něj | 1 min |
@@ -56,6 +57,9 @@ nebo jednotlivě, v tomto pořadí (pozdější skripty čtou `search.npz`):
   asociátor v režimech znaménko / proměnný krok / bez omezení), simulační smyčka vektorizovaná přes
   N regulátorů.
 - `shading.py` — tři sekce s bypass diodami, křivka P(V) s více vrcholy, globální MPP.
+- `census.sh` — **jediný skript, který potřebuje síť.** Stáhne všech deset autorových depositů ze
+  Zenoda, převede je přes `pdftotext` a spočítá klíčová slova, na kterých stojí atribuce Maxwellovi
+  (PAPER.cs.md §5).
 
 ## Klíčová čísla
 
@@ -75,6 +79,23 @@ překonalo 404 pevnou střídu a žádná nepřekonala P&O.
 Publikovaná konfigurace (výstup `e0`, nedeformovaná metrika, jak plyne ze zveřejněného kódu) dosáhne
 20,3 % a umístila se za 16 470 z 20 000 náhodně poskládaných konfigurací. Naházet těch osm veličin do
 složek kostkou ji tedy překoná ve čtyřech případech z pěti (`percentile.py`).
+
+Kostka si vede stejně dobře proto, že ty sloty jsou záměnné. Ze 7! = 5040 způsobů, jak namapovat sedm
+fyzikálních veličin na `e1…e7`, nechá **168** násobicí tabulku bitově identickou, takže každé
+přiřazení je algebraicky nerozlišitelné od 167 dalších a těch 5040 se zhroutí na **30** různých
+algeber; celá bázová automorfní grupa má řád **1344** (`labels.py`, tatáž čtyři čísla na orientaci
+z tohoto repozitáře i na té, kterou autor později publikoval jako SOTP Eq. 3). Čteno s jednotkami ze
+sekce 2.1 doslova staví **42 z 56** součinů různých imaginárních jednotek do rovnosti neslučitelné
+dimenze a soustava podmínek `d_i + d_j = d_k` přes celou tabulku má hodnost **8 z 8** — takže jediný
+dimenzionálně konzistentní oktonion nad ℝ je ten, jehož všech osm složek je bezrozměrných. `e0` navíc
+není slot vůbec: je to multiplikativní jednotka, takže nazvat ji „scalar voltage" tvrdí, že V² = V.
+
+*Maxwellian* v titulu je necitovaný a `census.sh` ukazuje, že atribuce sleduje algebru, ne historii:
+Maxwell je jmenovaný ve čtyřech depositech, které ho párují s oktoniony (2, 1, 4 a 5krát), a
+**nulakrát** v CQFT, PCTP a SOTP, kde je algebra kvaternionová. „Treatise", „1873", „1865" a
+„Heaviside" se ve všech deseti depositech vyskytují **nulakrát**. Kvaterniony jsou v *Treatise* z roku
+1873 v §§618–619 — na dvou stranách hamiltonovské operátorové notace, ve kterých Maxwell nikdy
+nevynásobí dva kvaterniony — a oktoniony se u Maxwella neobjevují vůbec nikde.
 
 ## Doprovodná vyhodnocení
 

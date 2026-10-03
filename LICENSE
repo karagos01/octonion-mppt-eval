@@ -1,8 +1,8 @@
 Scope of this file
 ------------------
-The MIT licence below covers the CODE in this repository (all *.py files and
-run_all.sh). The text of PAPER.md and PAPER.cs.md is licensed separately under
-Creative Commons Attribution 4.0 International (CC BY 4.0),
+The MIT licence below covers the CODE in this repository (all *.py files,
+run_all.sh and census.sh). The text of PAPER.md and PAPER.cs.md is licensed
+separately under Creative Commons Attribution 4.0 International (CC BY 4.0),
 https://creativecommons.org/licenses/by/4.0/
 
 MIT License
